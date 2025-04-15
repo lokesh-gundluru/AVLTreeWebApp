@@ -3,30 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AVL Tree Web App</title>
+    <title>Sum Web App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>AVL Tree Web Application</h1>
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" accept=".txt" required>
-        <input type="submit" value="Build Tree from File">
+    <h1>Sum Web Application</h1>
+
+    <form action="/calculate" method="POST">
+        <input type="number" name="num1" placeholder="Enter first number" required>
+        <input type="number" name="num2" placeholder="Enter second number" required>
+        <input type="submit" value="Calculate Sum">
     </form>
 
-    {% if tree %}
-        <h2>Preorder Traversal of the Tree:</h2>
-        <p>{{ tree }}</p>
-        <form action="/insert" method="POST">
-            <input type="text" name="value" placeholder="Insert value" required>
-            <input type="submit" value="Insert Node">
-        </form>
-        <form action="/delete" method="POST">
-            <input type="text" name="value" placeholder="Delete value" required>
-            <input type="submit" value="Delete Node">
-        </form>
-        <form action="/download" method="GET">
-            <input type="submit" value="Download Tree">
-        </form>
+    {% if sum_result is not none %}
+        <h2>Sum: {{ sum_result }}</h2>
     {% endif %}
 </body>
 </html>
