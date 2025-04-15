@@ -1,34 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>AVL Tree Visualizer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVL Tree Web App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>AVL Tree Web App</h1>
-
+    <h1>AVL Tree Web Application</h1>
     <form action="/upload" method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" required />
-        <button type="submit">Build Tree from File</button>
-    </form>
-
-    <form action="/insert" method="POST">
-        <input type="number" name="value" placeholder="Insert Value" required />
-        <button type="submit">Insert</button>
-    </form>
-
-    <form action="/delete" method="POST">
-        <input type="number" name="value" placeholder="Delete Value" required />
-        <button type="submit">Delete</button>
-    </form>
-
-    <form action="/download">
-        <button type="submit">Download Tree</button>
+        <input type="file" name="file" accept=".txt" required>
+        <input type="submit" value="Build Tree from File">
     </form>
 
     {% if tree %}
-        <h2>Preorder Traversal:</h2>
+        <h2>Preorder Traversal of the Tree:</h2>
         <p>{{ tree }}</p>
+        <form action="/insert" method="POST">
+            <input type="text" name="value" placeholder="Insert value" required>
+            <input type="submit" value="Insert Node">
+        </form>
+        <form action="/delete" method="POST">
+            <input type="text" name="value" placeholder="Delete value" required>
+            <input type="submit" value="Delete Node">
+        </form>
+        <form action="/download" method="GET">
+            <input type="submit" value="Download Tree">
+        </form>
     {% endif %}
 </body>
 </html>
